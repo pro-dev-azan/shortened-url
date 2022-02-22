@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @url_shortener.url %>
+</p>
+
+<p>
+  <strong>Shortened url:</strong>
+  <%= shortened_url(@url_shortener.shortened_url) %>
+</p>
+
+<p>
+  <strong>Clicked:</strong>
+  <%= @url_shortener.clicked %>
+</p>
+
+<p>
+  <strong>Removed Character:</strong>
+  <%= @url_shortener.removed_characters %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @url_shortener.status %>
+</p>
+
+<%= link_to 'Edit', edit_url_shortener_path(@url_shortener), class: 'btn btn-outline-dark' %>
+<%= link_to 'Back', url_shorteners_path, class: 'btn btn-outline-dark' %>

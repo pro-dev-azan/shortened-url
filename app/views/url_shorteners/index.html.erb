@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Url</th>
+      <th scope="col">Shortened url</th>
+      <th scope="col" class="center">Clicked</th>
+      <th scope="col" class="center">Removed Character</th>
+      <th scope="col" class="center">Status</th>
+      <th scope="col" class="center" colspan="3">Action</th>
+    </tr>
+  </thead>
+
+  <tbody class="">
+    <% @url_shorteners.each do |url_shortener| %>
+      <tr scope="row" class=<%= "table-danger" if url_shortener.expire?  %> <%= 'disabled' if url_shortener.expire? %>>
+        <td class="url"><%= url_shortener.url %></td>
+        <td>
+          <%= link_to shortened_url(url_shortener.shortened_url), shortened_url(url_shortener.shortened_url),
+                      target: '_blank' %>
+        </td>
+        <td class="center"><%= url_shortener.clicked %></td>
+        <td class="center"><%= url_shortener.removed_characters %></td>
+        <td class="center"><%= status_text(url_shortener)  %></td>
+        <td class="center">
+          <%= link_to 'Show', url_shortener, type: 'button', class: 'btn btn-outline-info fix-pad fix-margin' %>
+          <%= link_to 'Edit', edit_url_shortener_path(url_shortener), type: 'button', class: 'btn btn-outline-secondary fix-pad fix-margin' %>
+          <%= link_to 'Destroy', url_shortener, type: 'button', class: 'btn btn-outline-danger fix-pad', method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Url Shortener', new_url_shortener_path, class: 'btn btn-outline-dark' %>

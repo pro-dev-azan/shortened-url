@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>App</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body <%= "#{signed_in? ? 'class=container' : ''}" %> >
+    <% if signed_in? %>
+    <nav class="navbar navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand">
+          <h1>URL Shorteners</h1>
+        </a>
+        <div class="name">
+          (<%= current_user.name %>)
+        </div>
+        <% if current_user.admin? %>
+          <%= link_to "Admin", '/admin', class: 'btn btn-outline-dark admin-btn' %>
+        <% end %>
+        <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: 'btn btn-outline-dark' %>
+      </div>
+    </nav>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+<section class="vh-100 bg-image" style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.jpg');">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+              <%= form_for(resource, as: resource_name, url: registration_path(resource_name), data: {'parsley-validate': ''}) do |f| %>
+                <%= render "devise/shared/error_messages", resource: resource %>
+
+                <div class="form-outline mb-4">
+                  <%= f.label :name, class: 'form-label' %>
+                  <%= f.text_field :name, class: 'form-control form-control-lg', 'data-parsley-required': 'true' %>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <%= f.label :email, class: 'form-label' %>
+                  <%= f.email_field :email, autofocus: true, class: 'form-control form-control-lg', 'data-parsley-required': 'true', 'data-parsley-type': 'email' %>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <%= f.label :password, class: 'form-label' %>
+                  <%= f.password_field :password, autocomplete: "new-password", id: 'pw', class: 'form-control form-control-lg', 'data-parsley-required': 'true', 'data-parsley-minlength': '6' %>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <%= f.label :password_confirmation, class: 'form-label' %>
+                  <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control form-control-lg', 'data-parsley-required': 'true', 'data-parsley-minlength': '6', 'data-parsley-equalto': '#pw' %>
+                </div>
+
+                <div class="actions d-flex justify-content-center">
+                  <%= f.submit "Sign up", class: "btn btn-success btn-block btn-lg gradient-custom-4 text-body" %>
+                </div>
+
+              <% end %>
+
+              <%= render "devise/shared/links" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
